@@ -1,0 +1,8 @@
+.container{
+    margin: lem auto;
+    border-radius: 0.125em;
+    border: 1px solid black;
+    padding: 1em;
+    grid-gap: 1em;display: grid;
+    grid-template-columns: 0.7fr 1fr 1fr;
+}

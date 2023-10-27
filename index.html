@@ -3,34 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <template id="post-template">
+        <style>
+          details {
+            font-family: "Open Sans Light", Helvetica, Arial;
+          }
+          .name {
+            font-weight: bold;
+            color: #217ac0;
+            font-size: 120%;
+          }
+          h4 {
+            margin: 10px 0 -8px 0;
+          }
+          h4 span {
+            background: #217ac0;
+            padding: 2px 6px 2px 6px;
+          }
+          h4 span {
+            border: 1px solid #cee9f9;
+            border-radius: 4px;
+          }
+          h4 span {
+            color: white;
+          }
+          .attributes {
+            margin-left: 22px;
+            font-size: 90%;
+          }
+          .attributes p {
+            margin-left: 16px;
+            font-style: italic;
+          }
+        </style>
+        <details>
+          <summary>
+            <span>
+              <code class="name"
+                ><slot name="postID">NEED NAME</slot></code
+              >
+              <span class="desc"
+                ><slot name="title">NEED DESCRIPTION</slot></span
+              >
+            </span>
+          </summary>
+          <div class="attributes">
+            <slot name="attributes"><p>None</p></slot>
+          </div>
+        </details>
+        <hr />
+    </template>
+
+    <template id="user-template">
+      <style>
+       .row {
+              display: grid;
+              grid-template-columns: 75% 25%; 
+              gap: 1rem;
+              border: 1px solid black;
+              padding: 10px;
+          }
+          .col-md-9 {
+              border-right: 1px dotted gray;
+          }
+          .userName{ 
+              font-size: 1.5em; 
+              color: #333; 
+          }
+          .name{
+              color: grey;
+          }       
+          .btn {
+              cursor: pointer;
+          }
+      </style>
+      <div class="row">
+          <div class="col-md-9" >
+              <div> 
+                <span class="name"><slot name="user-name">name</slot> </span> 
+                <span class="userName"><slot name="user-userName">User Name</slot>  </span>
+              </div>
+              <div>
+                <span class="phone"> <b><slot name="user-phone">Phone</slot></b></span>
+              </div>      
+              <div>
+                <span class="email"> <b><slot name="user-email">email</slot></b></span>
+              </div>   
+          </div>
+          <div class="col-md-3">
+              <button class="btn btn-toPosts">Read posts</button>
+          </div>
+      </div>
+  </template>
+
     <script src="app.js"></script>
+    <link href="styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
-        <div class="row">
-
-            <div class="col-6" id="source">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <button style="margin-top: 1%;" onclick="api.renderUsers()">Get all users</button>
-                        </div>
-        
-                        <div class="col">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"></span>
-                                <input id="id_input" type="text" class="form-control" placeholder="Введіть айді користувача" aria-label="ID" aria-describedby="basic-addon1">
-                            </div>
-                            <button style="margin-top: 1%;" onclick="api.renderUserTasks(document.getElementById('id_input').value)">Get a user by id</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div id="result"></div>
-            </div>
-        </div>
+      <div class="col-3" id="source">
+        <button style="margin-top: 1%;" onclick="renderer.renderUsers()">Get all users</button>
+      </div>
+      <div class="col-10">
+          <div id="result"></div>
+      </div>
+      <div class="col-10">
+          <div id="posts"></div>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
