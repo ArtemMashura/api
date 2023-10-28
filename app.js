@@ -76,9 +76,8 @@ class Renderer{
 
     async renderUsers(){
         let result = document.getElementById(`result`);
-        result.innerHTML = ``;
         await ApiReader.getAllUsers().then(data => {
-            console.log(data)
+            result.innerHTML = ``;
             data.forEach(item =>{
                 let template = document.createElement('user-card');
                 template.innerHTML = `
@@ -98,10 +97,8 @@ class Renderer{
 
     async renderUserTasks(id){
         let posts = document.getElementById(`posts`);
-        posts.innerHTML = ``;
         await ApiReader.getUser(id).then(data => {
-            console.log(data)
-            
+            posts.innerHTML = ``;
             data.forEach(item =>{
                 let template = document.createElement('user-post');
                 template.innerHTML = `
